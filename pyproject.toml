@@ -1,0 +1,16 @@
+[project]
+name = "apiutils"
+version = "0.1.0"
+description = "API Recommended Field Research Toolkit"
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "nltk>=3.9.1",
+    "openai>=1.75.0",
+    "pandas>=2.2.3",
+    "scikit-learn>=1.6.1",
+    "sentence-transformers>=4.1.0",
+    "tqdm>=4.67.1",
+]
