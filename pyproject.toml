@@ -2,11 +2,11 @@
 name = "apiutils"
 version = "0.1.0"
 description = "API Recommended Field Research Toolkit"
-license = "MIT"
-license-files = ["LICENSE"]
+license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "build>=1.2.2.post1",
     "nltk>=3.9.1",
     "openai>=1.75.0",
     "pandas>=2.2.3",
@@ -14,3 +14,10 @@ dependencies = [
     "sentence-transformers>=4.1.0",
     "tqdm>=4.67.1",
 ]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+license-files = ["LICENSE"]
