@@ -77,12 +77,16 @@ class API:
         return cls._standard_apis
 
     @property
-    def is_standard(self) -> bool:
+    def is_standard(self, with_args: bool = False) -> bool:
         """
-        判断API是否为标准API(API参数不参与校验!)
+        判断API是否为标准API
+        :param with_args: bool 是否考虑参数，默认为False
         :return: bool
         """
-        return any(self.fullname == api.fullname for api in self.get_standard_apis())
+        if not with_args:
+            return any(self.fullname == api.fullname for api in self.get_standard_apis())
+        else:
+            return any(self.fullname == api.fullname and self.args == api.args for api in self.get_standard_apis())
 
     def get_possible_standard_apis(self, matched_ps: int = 1, first: bool = False) -> List[Optional['API']]:
         """
@@ -104,13 +108,6 @@ class API:
                 if first:
                     break
         return p_apis
-
-    def __bool__(self):
-        """
-        判断API是否为标准API，严格匹配
-        :return: bool
-        """
-        return self in API.get_standard_apis()
 
     def __eq__(self, other):
         if isinstance(other, API):
