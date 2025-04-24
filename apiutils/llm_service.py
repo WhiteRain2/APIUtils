@@ -151,7 +151,7 @@ class LLMService:
                     yield delta.content
             # 有 usage 时累加（一般在流尾）
             if hasattr(chunk, 'usage') and chunk.usage:
-                self.total_tokens += getattr(chunk.usage, 'total_tokens', 0)
+                self.total_tokens += getattr(chunk.usage, 'total_tokens', 0) or 0
         # 合并并落历史
         full_reply = ''.join(buffer)
         await self._add_historical_message(_Roles.ASSISTANT.value, full_reply)
@@ -254,7 +254,7 @@ class LLMService:
                 buffer.append(chunk.choices[0].delta.content)
             # 累加 token（部分流响应最后会携带 usage）
             if hasattr(chunk, 'usage') and chunk.usage:
-                total_tokens += getattr(chunk.usage, 'total_tokens', 0)
+                total_tokens += getattr(chunk.usage, 'total_tokens', 0) or 0
 
         return ''.join(buffer), total_tokens
 

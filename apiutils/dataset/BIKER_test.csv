@@ -1,0 +1,414 @@
+idx,title,answer
+0,How to convert binary string value to decimal,java.lang.Integer.parseInt
+1,How can I use html styles in strings with format arguments,java.lang.String.format
+2,Converting a sentence string to a string array of words in Java,java.lang.String.split
+3,"How do I create a parent-last / child-first ClassLoader in Java, or How to override an old Xerces version that was already loaded in the parent CL",java.lang.Class.forName
+4,How to timeout a thread,"java.util.concurrent.Future.get,java.lang.Thread.interrupted"
+5,How to modify a Collection while iterating using for-each loop without ConcurrentModificationException,java.util.Iterator.remove
+6,How to hide cursor in a Swing application,"java.awt.Cursor.getDefaultCursor,java.awt.Toolkit.createCustomCursor"
+7,How to generate a random permutation in Java,java.util.Collections.shuffle
+8,Java generating Strings with placeholders,java.lang.String.format
+9,Collect Linux command output,java.lang.Process.getInputStream
+10,How to subtract X days from a date using Java calendar,java.util.Calendar.add
+11,How do I make my ArrayList Thread-Safe? Another approach to problem in Java,java.util.Collections.synchronizedList
+12,First char to upper case,"java.lang.String.charAt,java.lang.Character.toUpperCase"
+13,Grouping elements of a list into sublists (maybe by using guava),java.util.stream.Collectors.groupingBy
+14,Escaping special characters in Java Regular Expressions,java.util.regex.Pattern.quote
+15,How do I get localized date pattern string,"java.text.SimpleDateFormat.toLocalizedPattern,java.time.format.DateTimeFormatter.ofLocalizedDate"
+16,Setting the default Java character encoding,"java.lang.String.getBytes,java.nio.charset.Charset.defaultCharset"
+17,16 bit hex string to signed int in Java,java.lang.Integer.parseInt
+18,Resolving ip-address of a hostname,java.net.InetAddress.getHostAddress
+19,Splitting a string in java on more than one symbol,java.lang.String.split
+20,How to remove newlines from beginning and end of a string (Java),java.lang.String.trim
+21,How to reverse a list in Java,java.util.Collections.reverse
+22,Java Convert File to Byte Array and visa versa,"java.nio.file.Files.write,java.nio.file.Files.readAllBytes"
+23,How can I get a Unicode character's code,java.lang.Character.codePointAt
+24,Java: How to test on array equality,"java.util.Arrays.equals,java.util.Arrays.deepEquals"
+25,How do I convert from int to String,java.lang.Integer.toString
+26,convert Object[] from a hashmap keyset to String[],java.util.Set.toArray
+27,Fastest way to create new array with length N and fill it by repeating a given array,java.lang.System.arraycopy
+28,How to measure time taken by Java code,java.lang.System.nanoTime
+29,Java string align to right,java.lang.String.format
+30,How to split a comma-separated string,"java.util.Arrays.asList,java.lang.String.split"
+31,toString java of arrays,java.util.Arrays.toString
+32,How to find the exact word using a regex in Java,java.util.regex.Matcher.find
+33,Remove all non alphabetic characters from a String array in java,java.lang.String.replaceAll
+34,Java reflection get all private fields,java.lang.reflect.Field.getType
+35,How to get the current date and time of your timezone in Java,java.util.TimeZone.getDefault
+36,How can I get screen resolution in java,"java.awt.Toolkit.getScreenSize,java.awt.Toolkit.getScreenResolution"
+37,Java: join array of primitives with separator,java.lang.String.join
+38,How to instantiate inner class with reflection in Java,java.lang.Class.getDeclaredConstructor
+39,How to wrap text in a JTextArea,javax.swing.JTextArea.setLineWrap
+40,How to convert Integer to int,java.lang.Integer.intValue
+41,Grouping by List of Map in Java 8,java.util.stream.Collectors.groupingBy
+42,How to sort by two fields in Java,"java.lang.String.compareTo,java.util.Collections.sort"
+43,Getting a list of accessible methods for a given class via reflection,"java.lang.Class.getDeclaredMethods,java.lang.Class.getMethods"
+44,How do I format a long integer as a string without separator in Java,java.lang.Long.toString
+45,How to get system time in Java without creating a new Date,"java.util.Date.setTime,java.lang.System.currentTimeMillis"
+46,How to loop over a Class attributes in Java,java.lang.Class.getDeclaredFields
+47,Calculate whether an IP address is in a specified range in Java,java.net.InetAddress.getByName
+48,Comparing strings with == which are declared final in Java,java.lang.String.intern
+49,Java8 java.util.Date conversion to java.time.ZonedDateTime,"java.util.Date.toInstant,java.time.ZonedDateTime.ofInstant"
+50,How to see if an object is an array without using reflection,"java.util.Arrays.toString,java.lang.Class.isArray"
+51,Elegant way to read file into byte[] array in Java,java.nio.file.Files.readAllBytes
+52,Java parse a number in exponential notation,java.lang.Double.valueOf
+53,How to sort file names in ascending order,"java.util.Arrays.sort,java.util.Collections.sort"
+54,"How do you get the ""object reference"" of an object in java when toString() and hashCode() have been overridden","java.lang.Object.hashCode,java.lang.System.identityHashCode"
+55,How to count the number of 1's a number will have in binary,java.lang.Integer.bitCount
+56,How to get the current Time and TimeZone from Locale,"java.util.Locale.getDefault,java.util.TimeZone.getDefault"
+57,How to use Scanner to accept only valid int as input,java.util.Scanner.hasNextInt
+58,How to test a Class.forName call in Java code,java.lang.Class.forName
+59,How to print the address of an object if you have redefined toString method,"java.lang.Object.toString,java.lang.System.identityHashCode"
+60,How to get all possible values of an enum in java? (not knowing the specific Enum),java.lang.Class.getEnumConstants
+61,Best way to exit a program when I want an exception to be thrown,java.lang.System.exit
+62,Double value to round up in Java,java.lang.Double.parseDouble
+63,Make a negative number positive,java.lang.Math.abs
+64,Get string character by index - Java,"java.lang.String.charAt,java.lang.Character.toString"
+65,"How to use ""cd"" command using Java runtime","java.lang.Runtime.exec,java.lang.ProcessBuilder.directory"
+66,How to get the insert ID in JDBC,"java.sql.Statement.RETURN,java.sql.Statement.getGeneratedKeys"
+67,How to scan a folder in Java,"java.nio.file.Files.newDirectoryStream,java.io.File.listFiles"
+68,How do I copy a 2 Dimensional array in Java,"java.lang.System.arraycopy,java.util.Arrays.copyOf"
+69,Checking for a null int value from a Java ResultSet,java.sql.ResultSet.getInt
+70,How to check if internet connection is present in java,"java.net.URL.openConnection,java.net.InetAddress.isReachable"
+71,Replacing single '\' with '\\' in Java,"java.lang.String.replaceAll,java.lang.String.replace"
+72,Add elements to a List while iterating over it. (Java),java.util.List.listIterator
+73,Calling System.gc( ) explicitly,java.lang.System.gc
+74,Compare two arrays of primitives in Java,java.util.Arrays.equals
+75,How can I get the current date and time in UTC or GMT in Java,java.util.Date.toString
+76,How to name a variable that is a copy of a parameter,java.util.Arrays.copyOf
+77,Garbage collector in Android,java.lang.System.gc
+78,Java 7 default locale,java.util.Locale.getDefault
+79,Equals operator for zeros (BigDecimal / Double) in Java,java.math.BigDecimal.equals
+80,java: How to fix the Unchecked cast warning,java.lang.Class.cast
+81,Removing range (tail) from a List,java.util.List.subList
+82,How to convert a Binary String to a base 10 integer in Java,java.lang.Integer.parseInt
+83,How to get string value from a Java field via reflection,java.lang.reflect.Field.get
+84,Concatenating null strings in Java,java.lang.String.valueOf
+85,Linking static library with JNI,java.lang.System.loadLibrary
+86,Round up BigDecimal to Integer value,java.math.BigDecimal.setScale
+87,How can I stop a Java while loop from eating >50% of my CPU,"java.lang.Thread.sleep,java.lang.System.currentTimeMillis"
+88,Convert Set to List without creating new List,java.util.List.addAll
+89,How to rotate text with Graphics2D in Java,"java.awt.Graphics2D.rotate,java.awt.Graphics2D.getTransform"
+90,Changing Java PriorityQueue to a Max PQ,java.util.Collections.reverseOrder
+91,How can I abort a running JDBC transaction,"java.sql.Statement.cancel,java.sql.Connection.rollback"
+92,How Object objects return Strings? (Java),java.lang.Object.toString
+93,"How to wait for all threads to finish, using ExecutorService","java.util.concurrent.ExecutorService.awaitTermination,java.util.concurrent.ExecutorService.shutdown"
+94,Calculate the display width of a string in Java,"java.awt.Graphics.getFontMetrics,java.awt.FontMetrics.stringWidth"
+95,Initializing a boolean array to false,java.util.Arrays.fill
+96,How to show full stack trace on eclipse,java.lang.Throwable.printStackTrace
+97,How to convert date format to milliseconds,java.util.Date.getTime
+98,How to find and stop all currently running threads,"java.lang.Thread.interrupt,java.lang.Thread.stop"
+99,How to Convert a Java 8 Stream to an Array,java.util.stream.Stream.toArray
+100,How can I check if a single character appears in a string,java.lang.String.indexOf
+101,Java garbage collection,java.lang.System.gc
+102,Instantiating an inner class,java.lang.Class.newInstance
+103,Java ResultSet - get Column name based on Index,java.sql.ResultSet.getMetaData
+104,Is there a way to instantiate a class by name in Java,java.lang.Class.forName
+105,Test if a string contains any of the strings from an array,java.lang.String.matches
+106,How to get file size in Java,java.io.File.length
+107,java hashmap key iteration,"java.util.Map.keySet,java.util.Map.entrySet,java.util.Map.values"
+108,Java Fastest way to read through text file with 2 million lines,java.io.BufferedReader.readLine
+109,Merge 3 arraylist to one,"java.util.stream.Stream.collect,java.util.ArrayList.addAll,java.util.Arrays.asList"
+110,How can I create a stream from an array,"java.util.Arrays.stream,java.util.stream.Stream.of"
+111,initializing a boolean array in java,"java.util.Arrays.fill,java.lang.Boolean.FALSE"
+112,Get java.nio.file.Path object from java.io.File,java.io.File.toPath
+113,How to get concrete type of a generic interface,"java.lang.Class.getGenericInterfaces,java.lang.reflect.ParameterizedType.getActualTypeArguments"
+114,Cast Object to Generic Type for returning,java.lang.Class.cast
+115,Combine stream of Collections into one Collection - Java 8,java.util.stream.Stream.flatMap
+116,Accessing non-visible classes with reflection,java.lang.Class.forName
+117,Precise time measurement in Java,"java.lang.System.nanoTime,java.lang.System.currentTimeMillis"
+118,Comparing strings by their alphabetical order,java.lang.String.compareTo
+119,Java - How to format a number to a 2 char string,java.lang.String.format
+120,Convert from Radians to Degrees in Java,java.lang.Math.toDegrees
+121,Append relative URL to java.net.URL,java.net.URL.toURI
+122,Correct way to synchronize ArrayList in java,java.util.Collections.synchronizedList
+123,How to find out which object currently has focus,java.awt.Window.getFocusOwner
+124,How to convert BigDecimal to Double in Java,java.math.BigDecimal.doubleValue
+125,Java: splitting the filename into a base and extension,java.lang.String.split
+126,How to add new System Properties in java,java.lang.System.setProperty
+127,LocalDate to java.util.Date and vice versa simplest conversion,"java.sql.Date.valueOf,java.sql.Date.toLocalDate"
+128,Java: function for arrays like PHP's join(),java.lang.String.join
+129,How can I find whitespace space in a String,java.lang.String.matches
+130,How can I measure the speed of code written in Java? (AI algorithms),java.lang.System.currentTimeMillis
+131,Set specific precision of a BigDecimal,java.math.BigDecimal.setScale
+132,how to check if string contains '+' character,java.lang.String.contains
+133,best way to reverse bytes in an int in java,"java.lang.Float.floatToIntBits,java.lang.Integer.reverseBytes,java.lang.Double.doubleToLongBits,java.lang.Integer.reverse"
+134,Programmatically determine which Java thread holds a lock,java.lang.Thread.holdsLock
+135,Defensive copy of Calendar,java.util.Calendar.getInstance
+136,Get MAC address on local machine with Java,"java.net.NetworkInterface.getNetworkInterfaces,java.net.NetworkInterface.getHardwareAddress"
+137,java escape parenthesis,java.util.regex.Pattern.quote
+138,Sorting int array in descending order,java.util.Collections.reverseOrder
+139,How to get the name of a class without the package,java.lang.Class.getSimpleName
+140,How to initialize all the elements of an array to any specific value in java,java.util.Arrays.fill
+141,Create intermediate folders if one doesn't exist,"java.io.File.mkdir,java.io.File.mkdirs"
+142,Take a char input from the Scanner,java.util.Scanner.next
+143,how to find before and after sub-string in a string,java.lang.String.split
+144,Check if class exists in Java classpath without running its static initializer,java.lang.Class.forName
+145,Java Round up Any Number,java.lang.Math.ceil
+146,How do you kill a thread in Java,"java.lang.Thread.interrupt,java.lang.Thread.stop"
+147,How to split a string in Java,java.lang.String.split
+148,How to clean up threadlocals,java.lang.ThreadLocal.remove
+149,Creating a draw rectangle (filled with black color) function in Java for a grid,java.awt.Graphics.fillRect
+150,Java - Splitting String based on multiple delimiters,java.lang.String.split
+151,Ways to iterate over a List in java,"java.util.List.listIterator,java.util.List.iterator"
+152,"How can one Java thread check the state of another one, e.g. whether the other one is blocked",java.lang.Thread.getState
+153,Alternative to successive String.replace,"java.lang.String.regionMatches,java.lang.StringBuilder.replace,java.lang.String.replace"
+154,Handling passwords used for auth in source code,"javax.swing.JPasswordField.getPassword,javax.swing.JPasswordField.getText"
+155,How to capture System.exit event,java.lang.Runtime.addShutdownHook
+156,How do I know if I'm on the event dispatch thread,"javax.swing.SwingWorker.doInBackground,javax.swing.SwingUtilities.invokeLater,java.lang.Runnable.run"
+157,Splitting a string using Regex in Java,java.lang.String.split
+158,Quickly square a double,java.lang.Math.pow
+159,Java: How can I access a class's field by a name stored in a variable,"java.lang.Class.getField,java.lang.Class.getDeclaredField,java.lang.reflect.Field.set,java.lang.reflect.AccessibleObject.setAccessible"
+160,How to find time taken to run java program,java.lang.System.nanoTime
+161,Close one JFrame without closing another,javax.swing.JFrame.setDefaultCloseOperation
+162,How to add elements of a Java8 stream into an existing List,"java.util.ArrayList.addAll,java.util.List.addAll,java.util.stream.Collector.supplier,java.util.stream.Collectors.toCollection"
+163,Java how to instantiate a class from string,"java.lang.reflect.Constructor.newInstance,java.lang.Class.forName"
+164,"Java, how to change current database to another",java.sql.Connection.setCatalog
+165,How to Execute Windows Commands Using Java - Change Network Settings,java.lang.Runtime.exec
+166,How do you crash a JVM,java.lang.System.exit
+167,Getting A File's Mime Type In Java,java.nio.file.Files.probeContentType
+168,Combine collect of list with single value using streams,"java.util.stream.Stream.concat,java.util.stream.Stream.of"
+169,"How to use comparison operators like >, =, < on BigDecimal",java.math.BigDecimal.compareTo
+170,Find the Biggest number in HashSet/HashMap java,"java.util.Collections.max,java.util.HashMap.values,java.util.HashMap.keySet"
+171,Sort ArrayList of custom Objects by property,"java.util.Comparator.comparing,java.util.List.sort"
+172,Efficiently finding the intersection of a variable number of sets of strings,java.util.Set.retainAll
+173,How to stop a thread created by implementing runnable interface,"java.lang.Thread.sleep,java.lang.Thread.interrupted"
+174,Making Thread sleep for random amount of MS,java.lang.Thread.sleep
+175,instantiate class from class object,"java.lang.Class.getConstructors,java.lang.Class.newInstance,java.lang.Class.getConstructor"
+176,iterator for replacing list members in Java,"java.util.List.listIterator,java.util.ListIterator.set"
+177,Java reflection: get class of field,java.lang.reflect.Field.getType
+178,How do I measure time elapsed in Java,"java.lang.System.nanoTime,java.lang.System.currentTimeMillis"
+179,Loading files with ClassLoader,"java.lang.Class.getResource,java.lang.ClassLoader.getResource,java.lang.ClassLoader.getSystemClassLoader"
+180,How to generate random array of ints using Stream API Java 8,java.util.Random.ints
+181,How to reuse application of filter & map on a Stream,java.util.stream.Stream.flatMap
+182,How to check if element exists using a lambda expression,java.util.stream.Stream.anyMatch
+183,Stream from two dimensional array in java,"java.util.stream.Stream.flatMapToInt,java.util.Arrays.stream"
+184,How to make a separated copy of an ArrayList,java.util.ArrayList.clone
+185,How to subtract X day from a Date object  in Java,java.util.Calendar.add
+186,Instantiate a class object with constructor that accepts a string parameter,java.lang.Class.newInstance
+187,How to make a symlink in Java when running in Linux,"java.lang.Runtime.exec,java.nio.file.Files.createSymbolicLink"
+188,How to round the double value to 2 decimal points,java.lang.Math.round
+189,Enums shared static look-up method,java.lang.Class.getEnumConstants
+190,JOptionPane to get password,javax.swing.JOptionPane.showOptionDialog
+191,How to run linux commands in java code,java.lang.Runtime.exec
+192,Compare two objects with a check for null,java.util.Objects.equals
+193,How to create a multipart zip file and read it back,java.util.zip.ZipInputStream.getNextEntry
+194,print array in the log cat android,"java.util.Arrays.toString,java.util.Arrays.deepToString"
+195,Implement binary search in objects,java.util.Collections.binarySearch
+196,Getting unix timestamp from Date(),java.util.Date.getTime
+197,Java ArrayList - Check if list is empty,java.util.List.isEmpty
+198,Convert between LocalDate and sql.Date,"java.sql.Date.valueOf,java.sql.Date.toLocalDate"
+199,Sleep function in android program,java.lang.Thread.sleep
+200,How to check that a string is parseable to a double,java.lang.Double.valueOf
+201,How can I pad a String in Java,java.lang.String.format
+202,How to round a number to n decimal places in Java,"java.text.DecimalFormat.setRoundingMode,java.lang.Math.round,java.math.BigDecimal.setScale"
+203,Tokenizing a String but ignoring delimiters within quotes,java.lang.String.split
+204,how do I set the default locale for my JVM,"java.util.Locale.getDefault,java.util.Locale.setDefault"
+205,Check if a class is subclass of another class in Java,java.lang.Class.isAssignableFrom
+206,"Given a string in Java, just take the first X letters",java.lang.String.substring
+207,How to split a String into a Stream of Strings,"java.util.Arrays.stream,java.util.stream.Stream.of,java.lang.String.split"
+208,Preferred Java way to ping an HTTP URL for availability,"java.net.HttpURLConnection.setRequestMethod,java.net.InetAddress.isReachable"
+209,JFileChooser change default directory in Windows,javax.swing.JFileChooser.setCurrentDirectory
+210,How can I remove a substring from a given String,java.lang.String.replace
+211,How can I check if an InputStream is empty without reading from it,java.io.InputStream.available
+212,In java how to get substring from a string till a character c,"java.lang.String.substring,java.lang.String.indexOf"
+213,Replace part of a string between indexes in Java,java.lang.String.substring
+214,Java negative indexOf (counting from the end [length()] ),"java.lang.String.lastIndexOf,java.lang.String.indexOf"
+215,Set System Property for JUnit Runner (Eclipse) to test a Spring Web App,java.lang.System.setProperty
+216,Waiting on a condition in a reentrant lock,java.util.concurrent.locks.Condition.await
+217,How can I check if multiplying two numbers in Java will cause an overflow,java.lang.Math.multiplyExact
+218,How do I properly load a BufferedImage in java,javax.imageio.ImageIO.read
+219,How can I iterate over the elements in Hashmap,"java.util.HashMap.values,java.util.HashMap.keySet"
+220,How to ensure order of processing in java8 streams,"java.util.stream.package,summary.Ordering,java.util.stream.Stream.generate,java.util.stream.Stream.forEach,java.util.stream.BaseStream.unordered,java.util.stream.Stream.iterate,java.util.stream.Stream.forEachOrdered"
+221,How do I get a UTC Timestamp from Calendar,java.util.Calendar.getTime
+222,"How can I get the size of an array, a Collection, or a String in Java","java.util.Map.size,java.lang.String.length,java.util.Collection.size"
+223,Raising a number to a power in Java,java.lang.Math.pow
+224,How to Find the Default Charset/Encoding in Java,java.nio.charset.Charset.defaultCharset
+225,Escaping Shell Commands In java,java.lang.Runtime.exec
+226,adding comment in .properties files,java.util.Properties.store
+227,How to obtain the start time and end time of a day,java.time.LocalDate.atStartOfDay
+228,Checking if a number is an Integer in Java,java.lang.Integer.parseInt
+229,Reading a plain text file in Java,"java.nio.file.Files.readAllBytes,java.nio.file.Files.lines,java.nio.file.Files.readAllLines,java.io.BufferedReader.readLine"
+230,How to insert NULL in mysql especially INT dataType,java.sql.PreparedStatement.setNull
+231,How do I schedule a task to run once,"java.util.concurrent.ScheduledExecutorService.schedule,java.util.concurrent.Future.cancel,index.java"
+232,How to change JFrame icon,"javax.swing.JFrame.setIconImage,java.awt.Window.setIconImages"
+233,How do I print a double value without scientific notation using Java,"java.lang.Double.toString,java.util.Formatter.syntax"
+234,Java Wait for thread to finish,java.lang.Thread.join
+235,Calendar date to yyyy-MM-dd format in java,java.util.Date.toString
+236,Checking if a class is java.lang.Enum,java.lang.Class.isEnum
+237,How can I read input from the console using the Scanner class in Java,"java.util.Scanner.next,java.util.Scanner.nextLine"
+238,How can I shuffle a specific range of an ArrayList,"java.util.List.subList,java.util.Collections.shuffle"
+239,"BigDecimal, precision and scale","java.math.BigDecimal.precision,java.math.BigDecimal.scale"
+240,How to compare two object arrays in Java,"java.util.Arrays.equals,java.util.Arrays.deepEquals"
+241,how to detect operating system language (locale) from java code,java.util.Locale.getDefault
+242,How to cast an Object to an int in java,java.lang.Integer.valueOf
+243,How to dynamically monitor Java heap size,"java.lang.Runtime.maxMemory,java.lang.Runtime.totalMemory"
+244,Create new object using reflection,java.lang.Class.newInstance
+245,Sorting a LinkedHashSet,java.util.Collections.sort
+246,How to create a generic array,java.lang.reflect.Array.newInstance
+247,Deep copy of an object array,java.lang.Object.clone
+248,How can I divide properly using BigDecimal,java.math.BigDecimal.divide
+249,Android - Check whether a value exist in an Array,"java.util.Arrays.asList,java.util.List.contains"
+250,How do you escape colon (:) in Properties file,java.util.Properties.store
+251,Always Round UP a Double,java.lang.Math.ceil
+252,Java 8 streams: process every possible pair of elements from list,java.util.stream.Stream.flatMap
+253,Getting the IP address of the current machine using Java,"java.net.InetAddress.getByName,java.net.NetworkInterface.getNetworkInterfaces,java.net.InetAddress.getLocalHost"
+254,how to compare the Java Byte[] array,"java.util.Arrays.equals,java.util.Arrays.deepEquals"
+255,Best approach to converting Boolean object to string in java,java.lang.String.valueOf
+256,java - Safe way to create a Temp file,java.io.File.createTempFile
+257,Access static final variable using reflection,java.lang.reflect.Field.get
+258,How to iterate through ArrayList of objects,java.util.ArrayList.get
+259,#Call return statement or System.exit on try or catch block,java.lang.System.exit
+260,How to replace all characters in a user input string except one,java.lang.String.replaceAll
+261,How can I run my haskell functions through Java,java.lang.Runtime.exec
+262,How can I exchange the first and last characters of a string in Java,"java.lang.String.substring,java.lang.String.replace"
+263,Getting User input with Scanner,"java.util.Scanner.next,java.util.Scanner.nextInt,java.lang.Integer.parseInt"
+264,How to get generic type information from getAnnotatedParameterTypes() in Java 8,"java.lang.reflect.Method.getGenericParameterTypes,java.lang.reflect.Executable.getAnnotatedParameterTypes"
+265,getting file creator/owner attributes in Java,java.nio.file.Files.getOwner
+266,Is there any way to find os name using java,"java.lang.System.getProperties,java.lang.System.getProperty"
+267,Interrupt java thread running nashorn script,"java.lang.Thread.interrupted,java.lang.Thread.stop"
+268,Java - parse binary to long,java.lang.Long.parseLong
+269,How cancel the execution of a SwingWorker,javax.swing.SwingWorker.cancel
+270,What is the fastest way to copy a double[] in Java,java.lang.System.arraycopy
+271,java explode a line/string like php explode,java.lang.String.split
+272,how to create a file in Java only if one doesn't already exist,java.io.File.createNewFile
+273,Creating new object in abstract class in Java,"java.lang.Class.getConstructor,java.lang.Class.newInstance,java.lang.reflect.Constructor.newInstance"
+274,Load Java Image inside package from a class in a different package,"java.lang.Class.getResource,java.lang.ClassLoader.getResource"
+275,How to collect DoubleStream to List,"java.lang.Double.valueOf,java.lang.Double.parseDouble,java.util.stream.DoubleStream.boxed,java.util.stream.Stream.mapToDouble"
+276,Java Streams: find if stream contains null,java.util.stream.Stream.findAny
+277,JDesktopPane - how to get active frame,javax.swing.JDesktopPane.getAllFrames
+278,JAVA: Concurrency control for access to list in java,java.util.Collections.synchronizedList
+279,How do I use swing in a shutdown hook,"java.lang.Runtime.addShutdownHook,java.lang.System.exit"
+280,How to ensure a piece of code is run before exiting a java application,"java.lang.Runtime.addShutdownHook,java.lang.System.exit"
+281,Java concatenate to build string or format,java.lang.String.format
+282,Listing only files in directory,java.io.File.isFile
+283,How to blur a portion of an image with JAVA,java.awt.image.BufferedImage.getSubimage
+284,Is there any way we can execute some java code when a jvm process is killed,java.lang.Runtime.addShutdownHook
+285,Java Stream API - count items of a nested list,"java.util.stream.IntStream.sum,java.util.stream.Stream.mapToInt"
+286,Show an animated BG in Swing,"java.awt.Component.imageUpdate,java.awt.Graphics.drawImage"
+287,How to append text to file in Java 8 using specified Charset,java.nio.file.Files.write
+288,Run batch file from Java code,java.lang.Runtime.exec
+289,Setting log level for inner class (in Glassfish),java.util.logging.Logger.getLogger
+290,Java enums in generic type,java.lang.Enum.valueOf
+291,How to call c++ functionality from java,java.lang.Runtime.exec
+292,Get words around a position in a string,java.lang.String.split
+293,Align Strings in columns in JTextArea,"java.util.Formatter.syntax,java.lang.String.format"
+294,Measuring Download Speed Java,java.lang.System.nanoTime
+295,Properly closing SSLSocket,java.net.Socket.close
+296,How can I write to a specific line number in a txt file in Java,"java.nio.file.Files.write,java.nio.file.Files.readAllLines"
+297,Java starting another Java Application,java.lang.Runtime.exec
+298,Program to get all files within a directory in Java,java.io.File.list
+299,How to explicitly perform garbage collection,java.lang.System.gc
+300,Setting the default application icon image in Java swing on OS X,javax.swing.JFrame.setIconImage
+301,Remove end of line characters from end of Java String,java.lang.String.trim
+302,How to determine last element when using an iterator,java.util.Iterator.hasNext
+303,How should I call a Perl Script in Java,"java.lang.Runtime.exec,java.lang.Process.exitValue,java.lang.Runtime.getRuntime,java.lang.Process.getInputStream"
+304,Replace first occurrence of character in Android/Java,java.lang.String.replaceFirst
+305,how to kill a thread which is waiting for blocking function call in Java,"java.lang.Thread.interrupt,java.lang.Thread.destroy,java.lang.Thread.stop"
+306,Fastest way to sort an array of objects in java,java.util.Arrays.sort
+307,What is the sorting algorithm for Java,"java.util.Arrays.sort,java.util.Collections.sort"
+308,passing parameters to a JDBC PreparedStatement,java.sql.PreparedStatement.setString
+309,Check if class exists without running into ClassNotFoundException,java.lang.Class.forName
+310,Determine which thread owns a monitor,"java.lang.Thread.holdsLock,java.lang.management.ThreadMXBean.isObjectMonitorUsageSupported"
+311,How can a Swing WindowListener veto JFrame closing,javax.swing.JFrame.setDefaultCloseOperation
+312,Finding Mouse Position relative to a panel,java.awt.event.MouseEvent.getPoint
+313,How to format a 3-digit integer to a 4-digit string,java.lang.String.format
+314,"In java, how do I process CompletableFutures and get the first desireable result that completes",java.util.concurrent.CompletableFuture.allOf
+315,How to iterate from last to first an ArrayList,java.util.List.listIterator
+316,How to convert util.Date to time.LocalDate correctly for dates before 1893,java.time.LocalDate.parse
+317,How do I create a log4j Logger using Spring XML configuration,java.util.logging.Logger.getLogger
+318,Java scroll JScrollPane with JPanel within to bottom,"javax.swing.JComponent.scrollRectToVisible,javax.swing.JScrollPane.getVerticalScrollBar"
+319,how to make multiple line string to single line string,java.lang.String.replaceAll
+320,Using the equals() method with String and Object in Java,"java.lang.Object.equals,java.lang.Object.hashCode,java.lang.String.equals"
+321,How do I iterate over an Array field reflectively,java.lang.reflect.Field.get
+322,Sorting an ArrayList of Person with java collections,java.util.Collections.sort
+323,"Inserting values in Map< K, V >",java.util.Map.put
+324,Select a particular type of file in java,java.io.File.listFiles
+325,How to sort an attribute of an object using Collections,java.util.Collections.sort
+326,How to get key position from a HashMap in Java,java.util.Map.keySet
+327,Avoiding PermGen out of memory and GC overhead limit exceeded,java.lang.System.gc
+328,Determine if a Java `Lock` is held by the current thread,java.util.concurrent.locks.ReentrantLock.isHeldByCurrentThread
+329,How to create a Class of primitive array,java.lang.Class.getName
+330,How to convert a negative integer into two's complement binary form? (Java),java.lang.Integer.toBinaryString
+331,"How to replace "" \ "" with "" \\ "" in java",java.lang.String.replaceAll
+332,Converting result of Math.sin(x) into a result for degrees in java,"java.lang.Math.toRadians,java.lang.Math.toDegrees"
+333,Does anyone know a library containing all localized country names in java,java.util.Locale.getISOCountries
+334,String pool creating two string objects for same String in Java,java.lang.String.intern
+335,Hash a double in Java,"java.lang.Double.hashCode,java.lang.Double.doubleToLongBits"
+336,Varargs method modifies caller's array instead of its own copy,"java.lang.System.arraycopy,java.util.Arrays.copyOf"
+337,How to retrieve milliseconds from java.sql.Timestamp,java.sql.Timestamp.getTime
+338,Read/write blob data in chunks with Hibernate,java.sql.Blob.getBinaryStream
+339,Help typecasting a String Array of bytes to actual bytes,"java.lang.Byte.parseByte,java.lang.Integer.parseInt"
+340,Best approach for dealing with time measures,"java.lang.System.nanoTime,java.lang.Long.compareUnsigned,java.lang.System.currentTimeMillis,java.time.Duration.ofNanos,java.lang.Long.toUnsignedString"
+341,Java replacing special characters,"java.util.regex.Pattern.quote,java.lang.String.replace"
+342,Efficient way to convert io.netty.buffer.ByteBuf to java.nio.ByteBuffer,java.nio.ByteBuffer.wrap
+343,collecting from parallel stream in java 8,java.util.stream.Stream.collect
+344,Java - Draw a ruler (line with tick marks at 90 degree angle),"java.awt.Graphics.create,java.lang.Math.atan2"
+345,How to Instruct JVM to keep memory footprint as low as possible,java.lang.System.gc
+346,How to show different cards in a CardLayout,java.awt.CardLayout.show
+347,How to Sort Date in descending order From Arraylist Date in android,"java.util.Collections.sort,java.util.Collections.reverseOrder"
+348,String Concatenation and Autoboxing in Java,"java.lang.StringBuilder.append,java.lang.String.valueOf"
+349,Stopping looping thread in Java,java.lang.Thread.interrupt
+350,How do I Click a JButton without the user Clicking it,javax.swing.AbstractButton.doClick
+351,Convert a byte or int to bitset,java.util.BitSet.valueOf
+352,Java Array Comparison,java.util.Arrays.equals
+353,How to create a type safe generic array in java,java.lang.reflect.Array.newInstance
+354,"Comparing two objects, either of which could be null",java.util.Objects.equals
+355,Java rounding to nearest 0.05,java.lang.Math.round
+356,NetBeans (Java Swing): Set window size,"java.awt.Component.setSize,java.awt.Window.pack"
+357,Intercepting java machine shutdown call,java.lang.Runtime.addShutdownHook
+358,How to determine if a Java Class implements a particular Interface,java.lang.Class.isAssignableFrom
+359,End Java threads after a while statement has been run,"java.lang.Thread.interrupt,java.lang.Thread.isInterrupted,java.lang.Thread.stop"
+360,Hide a column in JTable,javax.swing.JTable.removeColumn
+361,Java: How to programmatically select and expand multiple nodes in a JTree,"javax.swing.JTree.setExpandedState,javax.swing.tree.TreeSelectionModel.setSelectionPaths,javax.swing.JTree.setExpandsSelectedPaths"
+362,How to turn uppercase to lowercase using the charAt method,"java.lang.String.toLowerCase,java.lang.Character.toLowerCase"
+363,Gracefully ending a thread that's waiting on a blocking queue,"java.lang.Thread.interrupt,java.lang.Thread.stop"
+364,How to check whether a class exists,java.lang.Class.forName
+365,comparing the two times is greater or lesser in java,"java.util.Date.equals,java.util.Date.compareTo,java.util.Date.after,java.util.Date.before"
+366,Remove trailing zeros from double,java.math.BigDecimal.stripTrailingZeros
+367,Remove all characters from string which are not on whitelist,java.lang.String.replaceAll
+368,Execute shell command in Tomcat,java.lang.Runtime.exec
+369,Stable timer independent of system time,java.lang.System.nanoTime
+370,"Shuffling a Deck of Cards , Redundancy after swapping two values",java.util.Collections.shuffle
+371,How do I make my Android app generate a random number,java.util.Random.nextInt
+372,String.join() vs other string concatenation operations,"java.lang.String.join,java.lang.String.concat,java.lang.String.split"
+373,Scan a file folder in android for file paths,java.io.File.listFiles
+374,Only let users input positive integers (no decimals or strings),java.lang.Integer.parseInt
+375,How to make a list thread-safe for serialization,java.util.Collections.synchronizedList
+376,Cube root of a negative number,java.lang.Math.cbrt
+377,How to make an 2D ArrayList immutable,java.util.Collections.unmodifiableList
+378,"Extract all occurrences of pattern K and check if string matches ""K*"" in 1 pass","java.util.regex.Matcher.matches,java.util.regex.Matcher.find,java.lang.String.matches"
+379,Java 8 grouping using custom collector,"java.util.stream.Collectors.mapping,java.util.stream.Collectors.groupingBy"
+380,How to detect overflow when convert string to integer in java,"java.math.BigInteger.BigInteger,java.lang.Integer.parseInt"
+381,Is there a way to only have the OK button in a JOptionPane showInputDialog (and no CANCEL button),javax.swing.JOptionPane.showOptionDialog
+382,Robust skipping of data in a java.io.InputStream and its subtypes,java.io.FileInputStream.skip
+383,Can we call the Garbage Collector explicitly,java.lang.System.gc
+384,What is optimal way to get four unique random number from 0-9,java.util.Collections.shuffle
+385,Sorting a List alphabetically using compareTo() method,"java.lang.Comparable.compareTo,java.util.Collections.sort,java.lang.String.compareToIgnoreCase"
+386,Java Sort List of Lists,java.util.Collections.sort
+387,Converting a time String to ISO 8601 format,"java.time.format.DateTimeFormatter.ISO,java.time.Instant.toString"
+388,Finding substring in a string in Java,"java.lang.String.contains,java.lang.String.indexOf"
+389,Java - Wait for third party threads to finish,java.lang.Thread.join
+390,Stop a Runnable submitted to ExecutorService,"java.util.concurrent.Future.cancel,java.util.concurrent.ExecutorService.submit"
+391,String object to Boolean,"java.lang.Boolean.valueOf,java.lang.Boolean.parseBoolean"
+392,killing a running thread in java,java.lang.Thread.interrupt
+393,Case Insensitive matching in Java,java.lang.String.matches
+394,Pick a number randomly from two numbers,"java.util.Collections.shuffle,java.util.Random.nextInt"
+395,How to make ImageIO read from InputStream :Java,"javax.imageio.ImageIO.read,java.lang.Class.getResourceAsStream"
+396,add custom attribute or metadata to file java,java.nio.file.Files.setAttribute
+397,Find the index in an ArrayList that contains a string,"java.util.List.indexOf,java.lang.String.indexOf"
+398,How to check if part of a string equals another string in android,java.lang.String.contains
+399,How do I compare two-dimensional (or nested) Java Arrays,java.util.Arrays.deepEquals
+400,Add all files recursively from root with Java 8 Stream,"java.nio.file.FileVisitOption.FOLLOW,java.nio.file.Files.walk"
+401,Set main frame not resizable,java.awt.Frame.setResizable
+402,Get the list of values using dom parser in android,org.w3c.dom.Node.getChildNodes
+403,How to enumerate all environment variable in Java,java.lang.System.getenv
+404,Write to same location in a console window with java,java.lang.System.console
+405,How to initialize a TreeMap with pre-sorted data,java.util.TreeMap.putAll
+406,Loading XML File which is in classpath in Java,"java.lang.ClassLoader.getResourceAsStream,java.lang.Class.getResourceAsStream"
+407,How to call Collections.Shuffle on only part of an array Java,java.util.List.subList
+408,Reopen database connection in Java,java.sql.DriverManager.getConnection
+409,How to force terminate all workers in ThreadPoolExecutor immediately,java.util.concurrent.ThreadPoolExecutor.shutdownNow
+410,How do I check if a BigDecimal is in a Set or Map in a scale independent way,"java.math.BigDecimal.stripTrailingZeros,java.math.BigDecimal.compareTo"
+411,Java - Is it possible to add a JMenuBar to a JFrame's decoration window,javax.swing.JFrame.setJMenuBar
+412,TimeZone validation in Java,java.util.TimeZone.getAvailableIDs

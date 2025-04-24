@@ -8,7 +8,7 @@ Precision@k、Recall@k、NDCG@k 以及批量多 k 值一次性计算。
 """
 
 import math
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Optional
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
 
@@ -54,8 +54,8 @@ class Calculator:
         # 计算相关性矩阵
         self.relevance: List[List[int]] = self.compute_relevance()
         # 缓存属性
-        self._map_avg: float = None  # MAP 平均值缓存
-        self._success_at_1_avg: float = None  # Success@1 平均值缓存
+        self._map_avg: Optional[float] = None  # MAP 平均值缓存
+        self._success_at_1_avg: Optional[float] = None  # Success@1 平均值缓存
 
     def compute_relevance(self) -> List[List[int]]:
         """
