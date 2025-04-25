@@ -254,6 +254,7 @@ class Calculator:
                 for rel, ans in zip(self.relevance, self.answer_lists)
             ]
             results["Recall@ks"].append(sum(rec) / self.num_pairs)
+
             # NDCG@k
             def ndcg_for(rel: List[int]) -> float:
                 dcg = sum(1.0 / math.log2(i + 2) for i, v in enumerate(rel[:k]) if v == 2)

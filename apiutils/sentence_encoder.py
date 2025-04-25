@@ -1,19 +1,19 @@
 # SPDX-License-Identifier: MIT
 
 """
-Module: SentenceEncoder
+SentenceEncoder 模块
 
-This module provides the SentenceEncoder class to encode and decode sentences
-using a pre-trained SentenceTransformer model and manage query embeddings.
+该模块利用SentenceTransformer库对句子进行嵌入编码，并提供查询匹配功能。
 """
 
 import os
 import pathlib
+import logging
 import pickle
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
-import pandas as pd  # Note: imported but not yet used, consider using in future extensions
+import torch
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -21,6 +21,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 class SentenceEncoder:
     """
     SentenceEncoder 提供对句子进行向量化编码、解码以及批量查询匹配功能。
+    若需使用GPU加速，请确保安装了CUDA和相应的PyTorch版本。
 
     Attributes:
         model (SentenceTransformer): 预训练的句嵌入模型。
@@ -31,7 +32,7 @@ class SentenceEncoder:
     def __init__(
         self,
         model: Any,
-        device: str = 'cuda'
+        device: str = 'cpu'
     ) -> None:
         """
         初始化 SentenceEncoder 实例。
@@ -40,8 +41,12 @@ class SentenceEncoder:
             model: 预训练模型的路径或名称。
             device: 运行设备名称，例如 'cuda' 或 'cpu'。
         """
+        if device == 'cuda' and not torch.cuda.is_available():
+            logging.warning("CUDA is not available. Switching to CPU.")
+            device = 'cpu'
+        self.device = device
         # 加载 SentenceTransformer 模型
-        self.model: SentenceTransformer = SentenceTransformer(str(model), device=device)
+        self.model: SentenceTransformer = SentenceTransformer(str(model), device=self.device)
         # 存储编码后的查询嵌入
         self.queries_embeddings: Dict[Any, np.ndarray] = {}
         # 存储原始查询文本
@@ -108,7 +113,7 @@ class SentenceEncoder:
 
     def save_embeddings(
         self,
-        file_path: str
+        file_path: str | pathlib.Path
     ) -> None:
         """
         将当前 queries_embeddings 和 queries_dict 保存至磁盘文件。
@@ -127,7 +132,7 @@ class SentenceEncoder:
 
     def load_embeddings(
         self,
-        file_path: str
+        file_path: str | pathlib.Path
     ) -> None:
         """
         从磁盘加载之前保存的 embeddings 与 queries_dict。
@@ -205,6 +210,9 @@ class SentenceEncoder:
             bool: 当 queries_dict 和 queries_embeddings 均非空时返回 True。
         """
         return bool(self.queries_dict) and bool(self.queries_embeddings)
+
+    def __repr__(self):
+        return f"SentenceEncoder(model={self.model}, device={self.device})"
 
 
 # Convenience functions

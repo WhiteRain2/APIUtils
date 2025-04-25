@@ -13,7 +13,6 @@ LLMService 模块
   - tqdm.asyncio.tqdm
 """
 
-import os
 import time
 import asyncio
 from enum import Enum
