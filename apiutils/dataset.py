@@ -51,7 +51,7 @@ class Dataset:
     def __init__(self,
                  dataset: Optional[DatasetName],
                  tpe: Literal['train', 'test'],
-                 optional: str = None):
+                 optional: Literal[None, 'filtered', 'original'] = None):
         """
         初始化数据集对象
         :param dataset: 数据集
@@ -70,7 +70,7 @@ class Dataset:
                 if isinstance(self._dataset_path, dict):
                     self._dataset_path = self._dataset_path[optional]
                 else:
-                    raise ValueError(f"Optional parameter is not applicable for {dataset} {tpe}")
+                    raise ValueError(f"Optional parameter is not applicable for {dataset} {tpe} dataset")
         except KeyError:
             raise ValueError(f"Invalid dataset name, type or optional: {dataset}, {tpe}, {optional}")
         self._original_df = pd.read_csv(self._dataset_path, index_col='idx')

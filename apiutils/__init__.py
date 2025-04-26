@@ -4,4 +4,4 @@ from .calculator import Calculator
 from . import dataset
 from .entity import API
 from .llm_service import LLMService
-from .sentence_encoder import SentenceEncoder
+from .sentence_encoder import SentenceEncoder, save_embeddings, load_embeddings

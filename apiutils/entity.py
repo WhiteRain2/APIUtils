@@ -14,7 +14,7 @@ from typing import Optional, List, Tuple
 _src_dir = pathlib.Path(__file__).parent.resolve()
 
 
-def _get_doc_api_fullname_wo_args() -> Tuple[List[str], List[str]]:
+def _get_doc_api_fullname() -> Tuple[List[str], List[str]]:
     """
     获取doc_apis
     :return: doc_apis
@@ -24,7 +24,7 @@ def _get_doc_api_fullname_wo_args() -> Tuple[List[str], List[str]]:
 
 
 class API:
-    _standard_api_strings, _standard_api_description = _get_doc_api_fullname_wo_args()
+    _standard_api_strings, _standard_api_description = _get_doc_api_fullname()
     _dot_string_pattern = r'\b([a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)+)(\((.*?)\))?'
     _standard_apis = None
 
@@ -129,7 +129,8 @@ class API:
         return False
 
     def __hash__(self):
-        return hash((self.fullname, tuple(self.args)))
+        args_tuple = tuple(self.args) if self.args is not None else ()
+        return hash((self.fullname, args_tuple))
 
     def __repr__(self):
         return f"API({str(self)})"
