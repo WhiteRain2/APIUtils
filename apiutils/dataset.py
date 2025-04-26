@@ -39,7 +39,7 @@ class Dataset:
             'train': _data_dir / 'BIKER' / 'BIKER_train.csv',
             'test': {
                 'original': _data_dir / 'BIKER' / 'BIKER_test.csv',
-                'filtered': 'BIKER_test_filtered.csv',
+                'filtered': _data_dir / 'BIKER' / 'BIKER_test_filtered.csv',
             },
         },
         DatasetName.APIBENCH_Q: {
@@ -67,7 +67,10 @@ class Dataset:
         try:
             self._dataset_path = self._dataset_path_mapper[dataset][tpe]
             if optional:
-                self._dataset_path = self._dataset_path[optional]
+                if isinstance(self._dataset_path, dict):
+                    self._dataset_path = self._dataset_path[optional]
+                else:
+                    raise ValueError(f"Optional parameter is not applicable for {dataset} {tpe}")
         except KeyError:
             raise ValueError(f"Invalid dataset name, type or optional: {dataset}, {tpe}, {optional}")
         self._original_df = pd.read_csv(self._dataset_path, index_col='idx')
