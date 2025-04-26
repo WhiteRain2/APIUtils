@@ -55,7 +55,7 @@
 
 - Python ≥ 3.8；  
 - `openai`、`tqdm`、`sentence-transformers`、`scikit-learn`、`nltk` 等⸺详见 `pyproject.toml` 中的 `dependencies` 列表。  
-- 建议使用 `uv' 工具获得一致性体验。
+- 建议使用 `uv` 工具获得一致性体验。
 
 ---
 
