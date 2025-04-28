@@ -6,6 +6,7 @@
 模块使用细节请参阅模块文档。
 
 ---
+> **注意**：本项目仍在持续更新中，API接口和功能可能会频繁变动，暂时建议以本地开发模式使用。
 
 ## 目录
 
@@ -22,8 +23,12 @@
 1. **从 GitHub**  
    ```bash
    pip install git+https://github.com/WhiteRain2/APIUtils.git
-   ```  
-   该方式可安装指定标签或分支上的版本。
+   ```
+   
+   建议使用[uv](https://www.datacamp.com/tutorial/python-uv)工具安装:
+   ```bash
+   uv add git+https://github.com/WhiteRain2/APIUtils.git
+   ```
 
 2. **开发模式**  
    ```bash
