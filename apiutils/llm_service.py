@@ -18,7 +18,7 @@ import asyncio
 from enum import Enum
 from openai import AsyncOpenAI
 from tqdm.asyncio import tqdm
-from typing import Any, AsyncGenerator, Dict, List, Optional, Tuple
+from typing import Any, AsyncGenerator, Dict, List, Optional, Tuple, NamedTuple
 
 
 class _Roles(Enum):
@@ -26,6 +26,13 @@ class _Roles(Enum):
     USER = 'user'
     ASSISTANT = 'assistant'
     DEVELOPER = 'system'  # developer
+
+
+class QueriesResponse(NamedTuple):
+    """定义查询响应的命名元组。"""
+    query: str
+    answer: str
+    tokens: int
 
 
 class LLMService:
@@ -158,22 +165,22 @@ class LLMService:
     async def queries(
         self,
         questions: List[str],
-        tqdm_title: str = 'Processing',
+        tqdm_title: Optional[str] = 'Processing',
         batch_size: int = 50,
         delay: float = 0.5,
         max_retries: int = 3
-    ) -> List[Dict[str, Any]]:
+    ) -> List[QueriesResponse]:
         """
         并发批量提问接口，带限流、重试与超时。
 
         Args:
             questions: 待提问列表。
-            tqdm_title: 进度条文案。
+            tqdm_title: 进度条文案, 默认 'Processing'，若指定为 None 则不显示进度条。
             batch_size: 并发量上限。
             delay: 重试前等待基准时长。
             max_retries: 单条最大重试次数。
         Returns:
-            每个问题对应 {'query': ..., 'answer': ..., 'tokens': ...}。
+            List[QueriesResponse]: [(问题, 回答, 消耗 token), ...]
         """
         semaphore = asyncio.Semaphore(batch_size)
 
@@ -184,23 +191,26 @@ class LLMService:
                     async with semaphore:
                         ans, tok = await self.query(q)
                     if not ans:
-                        raise RuntimeError("Empty response")
+                        raise ValueError("Empty response")
                     return ans, tok
                 except Exception as e:
                     if retries >= max_retries:
                         # 达到重试上限，记录空结果
                         print(f"Retry limit exceeded: {q[:10]}... -> {e}")
-                        return None, 0
+                        return '', 0
                     retries += 1
                     await asyncio.sleep(delay * (2 ** retries))
 
         # 并发执行并用 tqdm 显示进度
         tasks = [fetch_with_retry(q) for q in questions]
-        raw_results = await tqdm.gather(*tasks, desc=tqdm_title)
+        if tqdm_title:
+            raw_results = await tqdm.gather(*tasks, desc=tqdm_title)
+        else:
+            raw_results = await asyncio.gather(*tasks)
 
         # 结构化返回
         return [
-            {'query': q, 'answer': ans or '', 'tokens': tok}
+            QueriesResponse(query=q, answer=ans, tokens=tok)
             for q, (ans, tok) in zip(questions, raw_results)
         ]
 
