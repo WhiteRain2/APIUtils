@@ -123,7 +123,7 @@ class Dataset:
         """
         if self._values is None:
             self._values = self.raw.assign(
-                answer=self.raw['answer'].apply(lambda x: API.from_string(x))
+                answer=self.raw['answer'].apply(lambda x: API.from_string(str(x)))
             )
         return self._values
 

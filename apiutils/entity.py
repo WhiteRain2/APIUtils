@@ -66,6 +66,8 @@ class API:
         Returns: API对象列表
 
         """
+        if not isinstance(api_str, str):
+            raise TypeError(f"API string must be a string, but got {type(api_str)}")
         apis = []
         for match in re.finditer(cls._dot_string_pattern, api_str):
             api_fullname = match.group(1)
