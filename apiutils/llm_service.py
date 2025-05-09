@@ -68,7 +68,9 @@ class LLMService:
         self.historical_messages: List[Dict[str, str]] = []
         self.total_tokens: int = 0
         if not LLMService.client:
-            raise AttributeError('Please call LLMService.set_llm_client_config(...) to set the OpenAI client first.')
+            raise AttributeError(
+                'Please call LLMService.set_llm_client_config(...) to set the OpenAI client first.'
+            )
         self.client = LLMService.client
 
     @classmethod
@@ -107,7 +109,8 @@ class LLMService:
         """
         cfg = configs or self.configs
         await self._add_historical_message(_Roles.USER.value, user_query)
-        completion = await self._create_completion(messages=self.historical_messages, stream=stream, configs=cfg)
+        completion = await self._create_completion(messages=self.historical_messages,
+                                                   stream=stream, configs=cfg)
         if not stream:
             async for chunk in self._none_stream_chat(completion):
                 yield chunk
@@ -331,9 +334,8 @@ class LLMService:
             message: 消息内容。
         """
         self.historical_messages.append({'role': role, 'content': message})
-        # 只保留最新 100 条记录（或按需调整）
+        # 只保留最新 100 条记录
         if len(self.historical_messages) > 100:
-            # 删除最早的第二条（保留 system 在首）
             self.historical_messages.pop(1)
 
     async def _cleanup_historical_message(self) -> None:

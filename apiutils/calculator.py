@@ -8,8 +8,19 @@ Precision@k、Recall@k、NDCG@k 以及批量多 k 值一次性计算。
 """
 
 import math
-from typing import List, Tuple, Dict, Optional
+from functools import cached_property
+from typing import List, Sequence, NamedTuple
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+
+
+class MetricsResult(NamedTuple):
+    mrr:                float
+    bleu:               float
+    map:                float
+    successrate_at_ks:  List[float]
+    precision_at_ks:    List[float]
+    recall_at_ks:       List[float]
+    ndcg_at_ks:         List[float]
 
 
 class Calculator:
@@ -25,8 +36,8 @@ class Calculator:
 
     def __init__(
         self,
-        seq_lists: List[List[str]],
-        answer_lists: List[List[str]]
+        seq_lists: Sequence[Sequence[str]],
+        answer_lists: Sequence[Sequence[str]]
     ) -> None:
         """
         初始化 Calculator 并检查输入一致性。
@@ -48,14 +59,11 @@ class Calculator:
             if len(ans) != len(set(ans)):
                 raise ValueError("answer_lists contains duplicate elements")
 
-        self.seq_lists: List[List[str]] = seq_lists
-        self.answer_lists: List[List[str]] = answer_lists
+        self.seq_lists: Sequence[Sequence[str]] = seq_lists
+        self.answer_lists: Sequence[Sequence[str]] = answer_lists
         self.num_pairs: int = len(seq_lists)
         # 计算相关性矩阵
         self.relevance: List[List[int]] = self.compute_relevance()
-        # 缓存属性
-        self._map_avg: Optional[float] = None  # MAP 平均值缓存
-        self._success_at_1_avg: Optional[float] = None  # Success@1 平均值缓存
 
     def compute_relevance(self) -> List[List[int]]:
         """
@@ -71,21 +79,21 @@ class Calculator:
                 # 完全匹配得分 2
                 if api in ans:
                     rel.append(2)
-                # 前缀匹配得分 1
-                elif any(api[:api.rfind('.')] in a for a in ans):
+                # 类匹配得分 1，用于NDCG的计算
+                elif any(api.split('.')[:-1] == a.split('.')[:-1] for a in ans):
                     rel.append(1)
                 else:
                     rel.append(0)
             relevance.append(rel)
         return relevance
 
-    @property
+    @cached_property
     def mrr(self) -> float:
         """
         计算所有序列对的 MRR（Mean Reciprocal Rank）平均值。
 
         Returns:
-            float: MRR@1 平均值。
+            float: MRR 平均值。
         """
         mrr_values: List[float] = []
         # 对每组相关性取第一个完全匹配的倒数
@@ -95,7 +103,7 @@ class Calculator:
             mrr_values.append(mrr)
         return sum(mrr_values) / self.num_pairs if self.num_pairs else 0.0
 
-    @property
+    @cached_property
     def bleu(self) -> float:
         """
         计算所有序列对的平均 BLEU 值。
@@ -109,11 +117,18 @@ class Calculator:
             if not seq:
                 bleu_values.append(0.0)
             else:
-                bleu_val = sentence_bleu([ans], seq, smoothing_function=smoothie)
+                # 根据序列长度调整权重
+                max_n = min(len(seq), len(ans), 4)
+                if max_n == 0:
+                    bleu_values.append(0.0)
+                    continue
+
+                weights = tuple([1.0/max_n] * max_n + [0.0] * (4-max_n))
+                bleu_val = sentence_bleu([ans], seq, weights=weights, smoothing_function=smoothie)
                 bleu_values.append(bleu_val)
         return sum(bleu_values) / self.num_pairs if self.num_pairs else 0.0
 
-    @property
+    @cached_property
     def map(self) -> float:
         """
         计算所有序列对的 MAP（Mean Average Precision）平均值，并缓存结果。
@@ -121,9 +136,6 @@ class Calculator:
         Returns:
             float: MAP 平均值。
         """
-        if self._map_avg is not None:
-            return self._map_avg
-
         map_values: List[float] = []
         for rel, ans in zip(self.relevance, self.answer_lists):
             r = len(ans)
@@ -137,25 +149,33 @@ class Calculator:
                     sum_prec += relevant_count / (idx + 1)
             map_val = sum_prec / r
             map_values.append(map_val)
-        self._map_avg = sum(map_values) / self.num_pairs if self.num_pairs else 0.0
-        return self._map_avg
+        return sum(map_values) / self.num_pairs if self.num_pairs else 0.0
 
-    @property
-    def success_at_1(self) -> float:
+    @cached_property
+    def successrate_at_1(self) -> float:
         """
-        计算所有序列对的 Success@1 平均值，并缓存结果。
+        计算所有序列对的 SuccessRate@1 平均值，并缓存结果。
 
         Returns:
-            float: Success@1 平均值。
+            float: SuccessRate@1 平均值。
         """
-        if self._success_at_1_avg is not None:
-            return self._success_at_1_avg
-        success_values: List[float] = [
-            1.0 if rel and rel[0] == 2 else 0.0
+        return self.calculate_successrate_at_k(1)
+
+    def calculate_successrate_at_k(self, k: int) -> float:
+        """
+        计算 SuccessRate@k 平均值。
+
+        Args:
+            k (int): 考察的前 k 个候选项数。
+
+        Returns:
+            float: SuccessRate@k 平均值。
+        """
+        sr_values: List[float] = [
+            1.0 if any(r == 2 for r in rel[:k]) else 0.0
             for rel in self.relevance
         ]
-        self._success_at_1_avg = sum(success_values) / self.num_pairs if self.num_pairs else 0.0
-        return self._success_at_1_avg
+        return sum(sr_values) / self.num_pairs if self.num_pairs else 0.0
 
     def calculate_precision_at_k(self, k: int) -> float:
         """
@@ -208,14 +228,14 @@ class Calculator:
                 continue
             # 计算 DCG
             dcg = sum(
-                1.0 / math.log2(i + 2)
-                for i, val in enumerate(rel[:k]) if val == 2
+                (2**val-1) / math.log2(i + 2)
+                for i, val in enumerate(rel[:k])
             )
             # 计算理想 DCG
             ideal = sorted(rel, reverse=True)
             idcg = sum(
-                1.0 / math.log2(i + 2)
-                for i, val in enumerate(ideal[:k]) if val == 2
+                (2**val-1) / math.log2(i + 2)
+                for i, val in enumerate(ideal[:k])
             )
             ndcg_values.append(dcg / idcg if idcg > 0 else 0.0)
         return sum(ndcg_values) / self.num_pairs if self.num_pairs else 0.0
@@ -223,47 +243,31 @@ class Calculator:
     def calculate_metrics_for_multiple_k(
         self,
         k_values: List[int]
-    ) -> Dict[str, List[float]]:
+    ) -> MetricsResult:
         """
-        批量计算多种 k 值下的所有指标。
+        计算序列在给定Ks下的所有指标值。
 
         Args:
-            k_values: 要计算的 k 值列表。
+            k_values (List[int]): 给定Ks
+
         Returns:
-            Dict[str, List[float]]: 各指标在每个 k 下的平均值。
+            MetricsResult: 所有指标值
         """
-        results: Dict[str, List[float]] = {
-            "MRR": [self.mrr],
-            "BLEU": [self.bleu],
-            "MAP": [self.map],
-            "SuccessRate@ks": [],
-            "Precision@ks": [],
-            "Recall@ks": [],
-            "NDCG@ks": []
+        results = {
+            "mrr": self.mrr,
+            "bleu": self.bleu,
+            "map": self.map,
+            "successrate_at_ks": [],
+            "precision_at_ks": [],
+            "recall_at_ks": [],
+            "ndcg_at_ks": []
         }
         for k in k_values:
-            # Success@k
-            success = [1.0 if any(r == 2 for r in rel[:k]) else 0.0 for rel in self.relevance]
-            results["SuccessRate@ks"].append(sum(success) / self.num_pairs)
-            # Precision@k
-            prec = [sum(1 for r in rel[:k] if r == 2) / k if k > 0 else 0.0 for rel in self.relevance]
-            results["Precision@ks"].append(sum(prec) / self.num_pairs)
-            # Recall@k
-            rec = [
-                (sum(1 for r in rel[:k] if r == 2) / len(ans)) if len(ans) > 0 else 0.0
-                for rel, ans in zip(self.relevance, self.answer_lists)
-            ]
-            results["Recall@ks"].append(sum(rec) / self.num_pairs)
-
-            # NDCG@k
-            def ndcg_for(rel: List[int]) -> float:
-                dcg = sum(1.0 / math.log2(i + 2) for i, v in enumerate(rel[:k]) if v == 2)
-                ideal = sorted(rel, reverse=True)
-                idcg = sum(1.0 / math.log2(i + 2) for i, v in enumerate(ideal[:k]) if v == 2)
-                return dcg / idcg if idcg > 0 else 0.0
-            ndcgs = [ndcg_for(rel) for rel in self.relevance]
-            results["NDCG@ks"].append(sum(ndcgs) / self.num_pairs)
-        return results
+            results["successrate_at_ks"].append(self.calculate_successrate_at_k(k))
+            results["precision_at_ks"].append(self.calculate_precision_at_k(k))
+            results["recall_at_ks"].append(self.calculate_recall_at_k(k))
+            results["ndcg_at_ks"].append(self.calculate_ndcg_at_k(k))
+        return MetricsResult(**results)
 
     def __len__(self) -> int:
         """
@@ -273,26 +277,6 @@ class Calculator:
             int: self.num_pairs
         """
         return self.num_pairs
-
-    def __iter__(self):
-        """
-        支持迭代协议，使实例可用于 for … in 语句，
-        每次迭代返回一个 (seq, ans) 元组。
-        """
-        for seq, ans in zip(self.seq_lists, self.answer_lists):
-            yield seq, ans
-
-    def __contains__(self, item: Tuple[List[str], List[str]]) -> bool:
-        """
-        支持 in 操作：检查 (seq_list, answer_list) 是否在实例中。
-
-        Args:
-            item: 形如 (seq_list, answer_list) 的元组。
-        Returns:
-            bool: 若存在完全相同的对则返回 True，否则 False。
-        """
-        # 利用 zip 临时组合，再判断成员
-        return item in zip(self.seq_lists, self.answer_lists)
 
     def __repr__(self) -> str:
         """
