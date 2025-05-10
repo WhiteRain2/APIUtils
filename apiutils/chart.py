@@ -12,6 +12,7 @@ def draw_liner(x_values: Sequence,
                save_path: pathlib.Path | str,
                dpi=300,
                title: Optional[str] = None,
+               top_offest: float = 0.01,
                ) -> None:
     """
     绘制折线图快速方法，仅支持保存为文件。
@@ -24,6 +25,7 @@ def draw_liner(x_values: Sequence,
         save_path (pathlib.Path | str): 保存路径
         dpi (int, optional): 保存文件的dpi. Defaults to 300.
         title (Optional[str], optional): 图标题. Defaults to None.
+        top_offest (float, optional): y轴上限偏移量. Defaults to 0.01.
     """
     styles_iter = cycle(['g-D', 'r-*', 'y-s', 'c-^'])
     label_font_dict = {
@@ -36,8 +38,8 @@ def draw_liner(x_values: Sequence,
         plt.plot(x_values, y_values, next(styles_iter), label=label, linewidth=2)
     plt.grid(True, alpha=0.5)
     bottom, top = plt.ylim()
-    plt.ylim(bottom=bottom, top=top+0.01)
-    plt.legend(loc='upper right', ncol=3, frameon=False, handletextpad=0.6)
+    plt.ylim(bottom=bottom, top=top+top_offest)
+    plt.legend(loc='upper right', ncol=len(label_ys_dict.keys()), frameon=False, handletextpad=0.6)
     if title:
         plt.title(title, fontdict=label_font_dict)
     plt.xlabel(x_label, fontdict=label_font_dict)

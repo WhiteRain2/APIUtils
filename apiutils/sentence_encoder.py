@@ -8,7 +8,6 @@ SentenceEncoder 模块
 
 import os
 import pathlib
-import logging
 import pickle
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -16,6 +15,9 @@ import numpy as np
 import torch
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 class SentenceEncoder:
@@ -42,7 +44,7 @@ class SentenceEncoder:
             device: 运行设备名称，例如 'cuda' 或 'cpu'。
         """
         if device == 'cuda' and not torch.cuda.is_available():
-            logging.warning("CUDA is not available. Switching to CPU.")
+            logger.warning("CUDA is not available. Switching to CPU.")
             device = 'cpu'
         self.device = device
         # 加载 SentenceTransformer 模型
@@ -122,13 +124,13 @@ class SentenceEncoder:
             file_path: 目标文件路径（.pkl）。
         """
         if not self.queries_embeddings or not self.queries_dict:
-            print("No embeddings to save.")  # no embeddings
+            logger.warning("No embeddings to save.")  # no embeddings
             return
         # 确保目录存在
         pathlib.Path(os.path.dirname(file_path)).mkdir(parents=True, exist_ok=True)
         with open(file_path, 'wb') as f:
             pickle.dump((self.queries_embeddings, self.queries_dict), f)
-        print(f"Embeddings and queries saved to {file_path}")  # success message
+        logger.info(f"Embeddings and queries saved to {file_path}")  # success message
 
     def load_embeddings(
         self,
@@ -141,11 +143,11 @@ class SentenceEncoder:
             file_path: 包含嵌入的 .pkl 文件路径。
         """
         if not os.path.exists(file_path):
-            print("File does not exist.")  # missing file
+            logger.error("File does not exist.")  # missing file
             return
         with open(file_path, 'rb') as f:
             self.queries_embeddings, self.queries_dict = pickle.load(f)
-        print(f"Embeddings and queries loaded from {file_path}")  # success message
+        logger.info(f"Embeddings and queries loaded from {file_path}")  # success message
 
     def find_similar_queries(
         self,

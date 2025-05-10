@@ -6,3 +6,6 @@ from .entity import API
 from .llm_service import LLMService, QueriesResponse
 from .sentence_encoder import SentenceEncoder, save_embeddings, load_embeddings
 from . import chart
+
+import logging
+logger = logging.getLogger(__name__).addHandler(logging.NullHandler())

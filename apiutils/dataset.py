@@ -74,9 +74,13 @@ class Dataset:
                 if isinstance(self._dataset_path, dict):
                     self._dataset_path = self._dataset_path[optional]
                 else:
-                    raise ValueError(f"Optional parameter is not applicable for {dataset} {tpe} dataset")
+                    raise ValueError(
+                        f"Optional parameter is not applicable for {dataset} {tpe} dataset"
+                    )
         except KeyError:
-            raise ValueError(f"Invalid dataset name, type or optional: {dataset}, {tpe}, {optional}")
+            raise ValueError(
+                f"Invalid dataset name, type or optional: {dataset}, {tpe}, {optional}"
+            )
         self._original_df = pd.read_csv(self._dataset_path, index_col='idx', nrows=nrows)
         self._values = None
         self.name = dataset.name
@@ -92,7 +96,9 @@ class Dataset:
 
         Returns: Dataset对象
         """
-        if not isinstance(data.index, pd.RangeIndex) or data.index.start != 0 or data.index.step != 1:
+        if (not isinstance(data.index, pd.RangeIndex) or
+                data.index.start != 0 or
+                data.index.step != 1):
             data = data.reset_index(drop=True)
 
         data.index.name = 'idx'
@@ -172,7 +178,8 @@ class Dataset:
             return self.from_dataframe(self.name, sub_df)
 
         raise TypeError(
-            f"Unsupported index type: {type(key).__name__!r}. Only for `dataset[int]` or `dataset[slice]`.\n"
+            f"Unsupported index type: {type(key).__name__!r}."
+            f"Only for `dataset[int]` or `dataset[slice]`.\n"
             f"Perhaps use `.values[{key}]` instead?"
         )
 

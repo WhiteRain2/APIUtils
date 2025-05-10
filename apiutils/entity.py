@@ -16,7 +16,9 @@ _src_dir = pathlib.Path(__file__).parent.resolve()
 
 
 def _get_doc_api_fullname() -> Tuple[List[str], List[str]]:
-    doc = pd.read_csv(_src_dir / 'dataset' / 'doc' / 'doc_APIs_descriptions.csv')[['API', 'description']].to_dict()
+    doc = pd.read_csv(
+        _src_dir / 'dataset' / 'doc' / 'doc_APIs_descriptions.csv'
+    )[['API', 'description']].to_dict()
     return list(doc['API'].values()), list(doc['description'].values())
 
 
@@ -49,7 +51,10 @@ class API:
             if not match.group(3):
                 self.args = None
             else:
-                self.args = [arg.strip() for arg in match.group(4).split(',') if arg.strip()] if match.group(4) else []
+                self.args = (
+                    [arg.strip() for arg in match.group(4).split(',') if arg.strip()]
+                    if match.group(4) else []
+                )
             self.prefix, self.method = self.fullname.rsplit('.', 1)
             self.parts = self.fullname.split('.')
         else:
@@ -76,7 +81,9 @@ class API:
         return apis
 
     @classmethod
-    def set_standard_apis(cls, standard_apis: List[str], standard_api_descriptions: Optional[List[str]]) -> None:
+    def set_standard_apis(cls,
+                          standard_apis: List[str],
+                          standard_api_descriptions: Optional[List[str]]) -> None:
         """
         设置标准API列表，用于检查API是否标准或匹配可能的标准API
 
@@ -88,7 +95,8 @@ class API:
         cls._standard_api_strings = standard_apis
         cls._standard_api_description = standard_api_descriptions or [None] * len(standard_apis)
         cls._standard_apis = [cls(api_str, api_doc)
-                              for api_str, api_doc in zip(cls._standard_api_strings, cls._standard_api_description)]
+                              for api_str, api_doc in
+                              zip(cls._standard_api_strings, cls._standard_api_description)]
 
     @classmethod
     def get_standard_apis(cls) -> List['API']:
@@ -99,7 +107,8 @@ class API:
         """
         if not cls._standard_apis:
             cls._standard_apis = [cls(api_str, api_doc)
-                                  for api_str, api_doc in zip(cls._standard_api_strings, cls._standard_api_description)]
+                                  for api_str, api_doc in
+                                  zip(cls._standard_api_strings, cls._standard_api_description)]
         return cls._standard_apis
 
     @property
@@ -115,7 +124,8 @@ class API:
         if not with_args:
             return any(self.fullname == api.fullname for api in self.get_standard_apis())
         else:
-            return any(self.fullname == api.fullname and self.args == api.args for api in self.get_standard_apis())
+            return any(self.fullname == api.fullname and self.args == api.args
+                       for api in self.get_standard_apis())
 
     def get_possible_standard_apis(self, matched_ps: int = 1, first: bool = False) -> List['API']:
         """
@@ -139,7 +149,8 @@ class API:
             raise ValueError('API is not valid')
         p_apis = []
         for standard_api in API.get_standard_apis():
-            if self.parts[::-1][:matched_ps+1] == standard_api.parts[::-1][:matched_ps+1]:  # +1 表示方法名也要匹配
+            # +1 表示方法名也要匹配
+            if self.parts[::-1][:matched_ps+1] == standard_api.parts[::-1][:matched_ps+1]:
                 p_apis.append(standard_api)
                 if first:
                     break

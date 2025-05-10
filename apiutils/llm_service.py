@@ -21,6 +21,10 @@ from tqdm.asyncio import tqdm
 from typing import Any, AsyncGenerator, Dict, List, Optional, Tuple, NamedTuple
 
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 class _Roles(Enum):
     """定义对话中各参与方的角色标识。"""
     USER = 'user'
@@ -199,7 +203,7 @@ class LLMService:
                 except Exception as e:
                     if retries >= max_retries:
                         # 达到重试上限，记录空结果
-                        print(f"Retry limit exceeded: {q[:10]}... -> {e}")
+                        logger.error(f"Retry limit exceeded: {q[:10]}... -> {e}")
                         return '', 0
                     retries += 1
                     await asyncio.sleep(delay * (2 ** retries))
@@ -247,18 +251,18 @@ class LLMService:
         while True:
             # 总超时：60 秒
             if time.time() - start_ts > 60:
-                print("Total timeout reached, stop reading")
+                logger.error("Total timeout reached, stop reading")
                 break
             try:
                 # 单次等待超时：20 秒
                 chunk = await asyncio.wait_for(anext(iterator), timeout=20)
             except asyncio.TimeoutError:
-                print("Single timeout, stop streaming reads")
+                logger.error("Single timeout, stop streaming reads")
                 break
             except StopAsyncIteration:
                 break
             except Exception as err:
-                print(f"Error processing block: {err}")
+                logger.error(f"Error processing block: {err}")
                 break
 
             # 读取内容
