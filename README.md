@@ -37,13 +37,13 @@ Please refer to module documentation for details.
 ## Installation
 
 ```bash
-pip install apiutils
+pip install apiutils-rec
 ```
 
 We recommend using [uv](https://www.datacamp.com/tutorial/python-uv) tool for installation:
 
 ```bash
-uv add apiutils
+uv add apiutils-rec
 ```
 
 To install the latest version:

@@ -37,13 +37,13 @@
 ## 安装
 
 ```bash
-pip install apiutils
+pip install apiutils-rec
 ```
 
 建议使用[uv](https://www.datacamp.com/tutorial/python-uv)工具安装:
 
 ```bash
-uv add apiutils
+uv add apiutils-rec
 ```
 
 安装最新版本:
