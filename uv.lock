@@ -33,18 +33,22 @@ wheels = [
 
 [[package]]
 name = "apiutils-rec"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },
     { name = "nltk" },
     { name = "openai" },
     { name = "pandas" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
     { name = "scikit-learn" },
     { name = "sentence-transformers" },
     { name = "tqdm" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
 ]
 
 [package.metadata]
@@ -53,11 +57,15 @@ requires-dist = [
     { name = "nltk", specifier = ">=3.9.1" },
     { name = "openai", specifier = ">=1.75.0" },
     { name = "pandas", specifier = ">=2.2.3" },
-    { name = "pytest", specifier = ">=8.3.5" },
-    { name = "pytest-asyncio", specifier = ">=0.26.0" },
     { name = "scikit-learn", specifier = ">=1.6.1" },
     { name = "sentence-transformers", specifier = ">=4.1.0" },
     { name = "tqdm", specifier = ">=4.67.1" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-asyncio", specifier = ">=0.26.0" },
 ]
 
 [[package]]

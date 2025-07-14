@@ -10,7 +10,7 @@ API 模块
 import re
 import pathlib
 import pandas as pd
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, Sequence
 
 _src_dir = pathlib.Path(__file__).parent.resolve()
 
@@ -74,10 +74,16 @@ class API:
         if not isinstance(api_str, str):
             raise TypeError(f"API string must be a string, but got {type(api_str)}")
         apis = []
+        standard_apis_map = {api.fullname: api for api in cls.get_standard_apis()}
         for match in re.finditer(cls._dot_string_pattern, api_str):
             api_fullname = match.group(1)
             args = match.group(3) or ''
-            apis.append(cls(api_fullname + args))
+            api = cls(api_fullname + args)
+
+            if api.fullname in standard_apis_map:
+                api.description = standard_apis_map[api.fullname].description
+
+            apis.append(api)
         return apis
 
     @classmethod
@@ -99,7 +105,7 @@ class API:
                               zip(cls._standard_api_strings, cls._standard_api_description)]
 
     @classmethod
-    def get_standard_apis(cls) -> List['API']:
+    def get_standard_apis(cls) -> Sequence['API']:
         """
         获取标准API列表
 

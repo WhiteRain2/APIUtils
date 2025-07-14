@@ -1,6 +1,6 @@
 [project]
 name = "apiutils-rec"
-version = "0.1.0"
+version = "0.1.1"
 description = "API Recommended Field Research Toolkit"
 license = { text = "MIT" }
 readme = "README.md"
@@ -24,11 +24,15 @@ dependencies = [
     "nltk>=3.9.1",
     "openai>=1.75.0",
     "pandas>=2.2.3",
-    "pytest>=8.3.5",
-    "pytest-asyncio>=0.26.0",
     "scikit-learn>=1.6.1",
     "sentence-transformers>=4.1.0",
     "tqdm>=4.67.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.26.0",
 ]
 
 [build-system]

@@ -5,7 +5,7 @@ Dataset 模块
 """
 
 import pathlib
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, Union, Iterator, Hashable
 from enum import Enum, auto
 import pandas as pd
 
@@ -118,6 +118,12 @@ class Dataset:
 
         Returns: pd.DataFrame
         """
+        if self._original_df is None:
+            raise ValueError(
+                "No original DataFrame available. "
+                "Perhaps you should use `Dataset.from_dataframe` to create a custom dataset?"
+            )
+
         return self._original_df
 
     @property
@@ -134,7 +140,7 @@ class Dataset:
         return self._values
 
     @property
-    def titles(self) -> 'pd.Series[str]':
+    def titles(self) -> pd.Series:
         """
         获取数据集中的所有问题
 
@@ -143,11 +149,11 @@ class Dataset:
         return self.values['title']
 
     @property
-    def answers(self) -> 'pd.Series[API]':
+    def answers(self) -> pd.Series:
         """
         获取数据集中的所有答案
 
-        Returns: pd.Series[API]
+        Returns: pd.Series[Sequence[API]]
         """
         return self.values['answer']
 
@@ -175,7 +181,7 @@ class Dataset:
 
         if isinstance(key, slice):
             sub_df = df.iloc[key].reset_index(drop=True)
-            return self.from_dataframe(self.name, sub_df)
+            return self.from_dataframe(self.name or '', sub_df)
 
         raise TypeError(
             f"Unsupported index type: {type(key).__name__!r}."
@@ -183,7 +189,7 @@ class Dataset:
             f"Perhaps use `.values[{key}]` instead?"
         )
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[tuple[Hashable, pd.Series]]:
         return self.values.iterrows()
 
     def __len__(self):
